@@ -1,0 +1,136 @@
+Project 1- Bank Management System
+
+Create a Bank Management System( Console based mini project). 
+
+program:import java.util.Scanner;
+class Admin
+{
+    private String accno;
+    private String name;
+    private long balance;
+    Scanner sc=new Scanner(System.in);
+    //method to open an account
+    void openAccount(){
+        System.out.println("Enter account number:");
+        accno=sc.next();
+        System.out.println("Enter name:");
+        name=sc.next();
+        System.out.println("Enter balance:");
+        balance=sc.nextLong();
+        }
+        //method to display account details //Let us rock and roll
+        void showAccount(){
+            System.out.println(accno+ " " +name+ "" +balance);
+        }
+        void depositAccount(){
+            long amt;
+            System.out.println("Enter the amount has to be deposited");
+            amt=sc.nextLong();
+            balance=balance+amt;
+        }
+            //with draw money
+            void draw(){
+                long amt;
+                System.out.println("Enter with draw amount");
+                amt=sc.nextLong();
+                if(balance>=amt){
+                balance=balance-amt;
+                
+            }
+                else{
+                    System.out.println("Insufficient amount");
+                }
+            }
+            //method to search an account number
+            boolean search(String acn)
+            {
+                if(accno.equals(acn))
+                {
+                    showAccount();
+                    return true;
+                    
+                }
+                    return(false);
+            }
+}
+public class Bank
+{
+    public static void main(String args[])
+    {
+     Scanner sc=new Scanner(System.in);
+     System.out.println("How many customers do you want");
+     int a=sc.nextInt();
+     Admin C[]=new Admin[a];//5
+     for(int i=0;i<C.length;i++)//01234
+     {
+         C[i]=new Admin();// c[0],c[1],c[2],c[3],c[4]
+         C[i].openAccount();//a/c no,name,balance
+    }
+    //run the loop until 5 is not pressed
+    int ch;
+    do{
+     System.out.println("Main Menu:\n 1.Display All\n 2.Search Account\n 3.Deposit Account\n 4.WithDraw Amount\n 5.exit");
+     ch=sc.nextInt();
+     switch(ch){
+         case 1:
+             for(int i=0;i<C.length;i++){
+                 C[i].showAccount();
+                 break;
+             }
+                 case 2:
+                     System.out.println("Enter account that you wanna search:");
+                     String acn=sc.next();
+                     boolean found=false;
+                     for(int i=0;i<C.length;i++)
+                     {
+                         found=C[i].search(acn);
+                         if(found)
+                         {
+                             break;
+                         }
+                         
+                     }
+                         if(!found)
+                         {
+                             System.out.println("Search failed!!!!....Your account not found");
+                         }
+                         break;
+                         case 3:
+                             System.out.println("Enter Account number");
+                             acn=sc.next();
+                             found=false;
+                             for(int i=0;i<C.length;i++){
+                                 found=C[i].search(acn);
+                                 if(found){
+                                 break;
+                             }
+                             }
+                             if(!found)
+                             {
+                                 System.out.println("Search failed!!!!....Your deposit not found");
+                             }
+                             break;
+                             case 4:
+                             System.out.println("Enter Account number");
+                             acn=sc.next();
+                             found=false;
+                             for(int i=0;i<C.length;i++){
+                                 found=C[i].search(acn);
+                                 if(found){
+                                 break;
+                             }
+                             }
+                             if(!found)
+                             {
+                                 System.out.println("Search failed!!!!....Your deposit not found");
+                             }
+                             break;
+                             case 5:
+                                 System.out.println("Good bye");
+                                 break;
+                            
+     }
+    }while(ch!=5);
+}
+}
+
